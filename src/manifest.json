@@ -1,7 +1,7 @@
 {
-  "name": "Picture-in-Picture Extension (by Google)",
-  "description": "Watch video using Picture-in-Picture",
-  "version": "1.10",
+  "name": "Picture-in-Picture Everywhere",
+  "description": "Watch videos using Picture-in-Picture on any website",
+  "version": "1.00",
   "icons": {
     "128": "assets/icon128.png"
   },
@@ -18,20 +18,18 @@
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {
-        "windows": "Alt+P",
-        "mac": "Alt+P",
-        "chromeos": "Alt+P",
-        "linux": "Alt+P"
+        "windows": "Alt+Shift+P",
+        "mac": "Alt+Shift+P",
+        "chromeos": "Alt+Shift+P",
+        "linux": "Alt+Shift+P"
       }
     }
   },
-  "options_ui": {
-    "page": "options.html",
-    "open_in_tab": false
-  },
-  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
+  "content_security_policy": "script-src 'self'; object-src 'self'",
   "permissions": [
     "<all_urls>",
+    "tabs",
+    "activeTab",
     "storage"
   ],
   "minimum_chrome_version": "69.0.3483.0",

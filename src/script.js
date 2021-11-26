@@ -1,4 +1,5 @@
 // Copyright 2018 Google LLC
+// Copyright 2021 SoftwerkZ.de
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +16,6 @@
 function findLargestPlayingVideo() {
   const videos = Array.from(document.querySelectorAll('video'))
     .filter(video => video.readyState != 0)
-    .filter(video => video.disablePictureInPicture == false)
     .sort((v1, v2) => {
       const v1Rect = v1.getClientRects()[0]||{width:0,height:0};
       const v2Rect = v2.getClientRects()[0]||{width:0,height:0};
