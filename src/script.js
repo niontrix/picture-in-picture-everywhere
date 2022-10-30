@@ -14,7 +14,7 @@
 // limitations under the License.
 
 function findLargestPlayingVideo() {
-  const videos = Array.from(document.querySelectorAll('video'))
+  const videos = findAllVideos()
     .filter(video => video.readyState != 0)
     .sort((v1, v2) => {
       const v1Rect = v1.getClientRects()[0]||{width:0,height:0};
@@ -27,6 +27,26 @@ function findLargestPlayingVideo() {
   }
 
   return videos[0];
+}
+
+function findAllVideos() {
+  let allVideos = [];
+  visit_nodes_recursive(node => {
+    if ('tagName' in node && node.tagName.toLowerCase() == 'video')
+      allVideos.push(node);
+  });
+  return allVideos;
+}
+
+function visit_nodes_recursive(callback, node) {
+  node = node || document;
+  callback.call(null, node);
+  if (node.firstChild)
+    visit_nodes_recursive(callback, node.firstChild);
+  if (node.nextSibling)
+    visit_nodes_recursive(callback, node.nextSibling);
+  if (node.shadowRoot)
+    visit_nodes_recursive(callback, node.shadowRoot);
 }
 
 async function requestPictureInPicture(video) {

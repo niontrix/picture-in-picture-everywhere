@@ -1,6 +1,6 @@
 {
   "name": "Picture-in-Picture Everywhere",
-  "description": "Watch videos using Picture-in-Picture on any website",
+  "description": "Watch videos using Picture-in-Picture on ANY website. Even if the video is hidden inside React or other UI framework components. Watch videos using PiP even if PiP is disabled for a video.",
   "version": "1.00",
   "icons": {
     "128": "assets/icon128.png"
