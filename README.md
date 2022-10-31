@@ -1,7 +1,7 @@
 # Picture-in-Picture Everywhere
 
-A simple Chrome Extension to make use of the [Picture-in-Picture Web API](https://wicg.github.io/picture-in-picture/) on any website
-irrespective of wether the website would like you to only watch a video in that browser tab.
+A simple Browser Extension (right now it's targeted at Chrome-based Browsers) to make use of the [Picture-in-Picture Web API](https://wicg.github.io/picture-in-picture/) on any website
+regardless of wether the website would like you to only watch a video in that browser tab.
 
 <img src="https://raw.githubusercontent.com/niontrix/picture-in-picture-everywhere/master/screenshot.png">
 
