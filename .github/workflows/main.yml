@@ -4,7 +4,7 @@ on:
   workflow_dispatch: # allows us to trigger our workflow manually
   push:
     tags:
-    - '*'
+    - 'v*'
       
 jobs:
   Chrome:
@@ -13,13 +13,33 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Pack extension
-      uses: TheDoctor0/zip-release@0.6.2
+    - id: packExtensionDir
+      uses: cardinalby/webext-buildtools-pack-extension-dir-action@v1
       with:
-        filename: ./pip-everywhere.crx
-        exclusions: '.git/* .vscode/* .github/* *.md'
+        extensionDir: 'src'
+        zipFilePath: 'build/pip-everywhere.zip'
         
-    - name: Publish Release
-      uses: ncipollo/release-action@v1
+    - name: Sign Chrome Extension crx file
+      # You may pin to the exact commit or the version.
+      # uses: cardinalby/webext-buildtools-chrome-crx-action@2f388677cdd648cfd9acb27f7d59c695ba0fcf82
+      uses: cardinalby/webext-buildtools-chrome-crx-action@2.0.1
       with:
-        artifacts: "pip-everywhere.crx"
+        # Path to WebExtension directory
+        zipFilePath: 'build/pip-everywhere.zip'
+        # Path to save result crx file
+        crxFilePath: 'build/pip-everywhere.crx'
+        # Contents of private key used to sign crx file
+        privateKey: ${{ secrets.CHROME_CRX_PRIVATE_KEY }}
+        # Path to save update.xml file for extensions hosted not on Chrome Web Store. This xml is used as response at url, specified in manifest's `update_url` key file
+        # updateXmlPath: # optional
+        # Required, if you specified updateXmlPath. URL to the .crx file
+        # updateXmlCodebaseUrl: # optional
+        # App Id to use in update.xml file. Generated from private key by default
+        # updateXmlAppId: # optional
+
+        
+    - name: Action Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: "build/pip-everywhere.crx"
+        
