@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     
     - name: Pack extension
-      uses: TheDoctor0/zip-release@0.4.1
+      uses: TheDoctor0/zip-release@0.6.2
       with:
         filename: ./pip-everywhere.crx
         exclusions: '.git/* .vscode/* .github/* *.md'
@@ -25,4 +25,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-        message: New Release
+        title: New Release
