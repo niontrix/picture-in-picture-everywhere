@@ -3,9 +3,8 @@ name: Extension CI
 on:
   workflow_dispatch: # allows us to trigger our workflow manually
   push:
-    branches: [master, main] # triggers workflow on code push to master/main branch
-    paths:
-      - 'manifest.json' # triggers workflow only if manifest.json is changed
+    tags:
+    - '*'
       
 jobs:
   Chrome:
